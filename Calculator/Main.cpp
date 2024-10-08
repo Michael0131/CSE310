@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <algorithm>
 #include "Calculator.h"
 
 void displayMenu() {
@@ -22,20 +23,12 @@ int main() {
     displayMenu();  // Show the menu once at the start
 
     // Loop until the user chooses to exit
-    while (true) {
+    while (choice != "exit" && choice != "-1") {
         std::cout << "Enter your choice: ";
-        std::cin >> choice;
+        std::getline(std::cin, choice);  // Read the entire line of input
 
         // Convert choice to lowercase to handle case insensitivity
-        for (auto& c : choice) {
-            c = std::tolower(c);
-        }
-
-        // Exit condition: check if the user wants to quit
-        if (choice == "exit" || choice == "-1") {
-            std::cout << "Exiting the calculator.\n";
-            break;  // Exit the loop
-        }
+        std::transform(choice.begin(), choice.end(), choice.begin(), ::tolower);
 
         // Handle the choice based on the user's input
         if (choice == "1" || choice == "add") {
@@ -48,6 +41,7 @@ int main() {
             } else {
                 calc.add(num1, num2);
             }
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear the buffer
         } else if (choice == "2" || choice == "subtract") {
             std::cout << "Enter two numbers: ";
             std::cin >> num1 >> num2;
@@ -58,6 +52,7 @@ int main() {
             } else {
                 calc.subtract(num1, num2);
             }
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear the buffer
         } else if (choice == "3" || choice == "multiply") {
             std::cout << "Enter two numbers: ";
             std::cin >> num1 >> num2;
@@ -68,6 +63,7 @@ int main() {
             } else {
                 calc.multiply(num1, num2);
             }
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear the buffer
         } else if (choice == "4" || choice == "divide") {
             std::cout << "Enter two numbers: ";
             std::cin >> num1 >> num2;
@@ -82,14 +78,16 @@ int main() {
                     std::cerr << e.what() << std::endl;
                 }
             }
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear the buffer
         } else if (choice == "5" || choice == "show" || choice == "history") {
             calc.showHistory();
         } else if (choice == "6" || choice == "save") {
             calc.saveHistoryToFile("history.txt");
-        } else {
+        } else if (choice != "exit" && choice != "-1") {
             std::cout << "Invalid choice. Please select from the menu options.\n";
         }
     }
 
+    std::cout << "Exiting the calculator.\n";
     return 0;
 }
