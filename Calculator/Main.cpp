@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <algorithm>
-#include <limits>  // Add this to use std::numeric_limits
+#include <limits>  
 #include "Calculator.h"
 
 void displayMenu() {
@@ -24,34 +24,42 @@ int main() {
 
     while (choice != "exit" && choice != "-1") {
         std::cout << "Enter your choice: ";
-        std::getline(std::cin, choice);  // Read the entire line of input
+        std::getline(std::cin, choice);  // Get the user's menu choice (whole line)
 
-        std::transform(choice.begin(), choice.end(), choice.begin(), ::tolower);
+        std::transform(choice.begin(), choice.end(), choice.begin(), ::tolower);  // Convert choice to lowercase
 
         if (choice == "1" || choice == "add") {
-            std::cout << "Enter two numbers: ";
-            std::cin >> num1 >> num2;
-            calc.add(num1, num2);
+            std::cout << "Number 1: ";
+            std::cin >> num1;
+            std::cout << "Number 2: ";
+            std::cin >> num2;
+            calc.add(num1, num2);  // Call the add method in the Calculator class
         } else if (choice == "2" || choice == "subtract") {
-            std::cout << "Enter two numbers: ";
-            std::cin >> num1 >> num2;
-            calc.subtract(num1, num2);
+            std::cout << "Number 1: ";
+            std::cin >> num1;
+            std::cout << "Number 2: ";
+            std::cin >> num2;
+            calc.subtract(num1, num2);  // Call the subtract method
         } else if (choice == "3" || choice == "multiply") {
-            std::cout << "Enter two numbers: ";
-            std::cin >> num1 >> num2;
-            calc.multiply(num1, num2);
+            std::cout << "Number 1: ";
+            std::cin >> num1;
+            std::cout << "Number 2: ";
+            std::cin >> num2;
+            calc.multiply(num1, num2);  // Call the multiply method
         } else if (choice == "4" || choice == "divide") {
-            std::cout << "Enter two numbers: ";
-            std::cin >> num1 >> num2;
-            calc.divide(num1, num2);
+            std::cout << "Number 1: ";
+            std::cin >> num1;
+            std::cout << "Number 2: ";
+            std::cin >> num2;
+            calc.divide(num1, num2);  // Call the divide method
         } else if (choice == "5" || choice == "show" || choice == "history") {
-            calc.showHistory();
+            calc.showHistory();  // Call showHistory to display the history
         } else if (choice == "6" || choice == "save") {
-            calc.saveHistoryToFile("history.txt");
+            calc.saveHistoryToFile("history.txt");  // Save history to a file
+            std::cout << "History saved to history.txt\n";  // Notify the user that the history was saved
         }
 
-        // Clear the input buffer after each operation
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');  // Clear the input buffer
     }
 
     std::cout << "Exiting the calculator.\n";
