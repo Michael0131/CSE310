@@ -4,7 +4,7 @@ In this project, I created a basic calculator using the C++ programming language
 
 This software showcases a calculator that allows users to input two numbers and select an operation to perform. The result is displayed back to the user through the command line. The focus of this project was on practicing coding logic and structure, handling user input, and refining my understanding of C++ language features.
 
-[Software Demo Video](http://youtube.link.goes.here)
+[Software Demo Video] https://youtu.be/673DJuptvDA
 
 # Development Environment
 
