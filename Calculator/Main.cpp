@@ -4,6 +4,16 @@
 #include <limits>  
 #include "Calculator.h"
 
+void centerScreen() {
+    system("clear");  // Clears the screen (use "cls" for Windows)
+    
+    // Add padding to move the text upwards (10 blank lines in this example)
+    for (int i = 0; i < 10; ++i) {
+        std::cout << "\n";
+    }
+}
+
+
 void displayMenu() {
     std::cout << "\nCalculator Menu:\n";
     std::cout << "1. Add\n";
@@ -19,6 +29,8 @@ int main() {
     Calculator calc;
     std::string choice;
     double num1, num2;
+
+    centerScreen();
 
     displayMenu();  // Show the menu once at the start
 
@@ -56,7 +68,7 @@ int main() {
             calc.showHistory();  // Call showHistory to display the history
         } else if (choice == "6" || choice == "save") {
             calc.saveHistoryToFile("history.txt");  // Save history to a file
-            std::cout << "History saved to history.txt\n";  // Notify the user that the history was saved
+            std::cout << "Press 'Enter' to Continue\n";
         }
 
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');  // Clear the input buffer
